@@ -1,0 +1,72 @@
+<style type="text/css" media="screen">
+/* You can customize the CSS below if you like*/
+.rav_project {
+  margin-bottom: 5px;
+  width: 210px;
+  overflow: hidden;
+}
+.rav_title {
+  font-size: .9em;
+  font: normal 500 12px 'Raleway', sans-serif;
+  text-transform:uppercase;
+  /* margin: 25px 0 0; */
+  letter-spacing: 2px;
+  text-align: center;
+}
+.rav_bar {
+  line-height: 1.3em;
+  height: 1.3em;
+  text-align: center;
+}
+.rav_bar_wrapper {
+  position: relative;
+  background-color: #eee;
+  border: 1px solid #aaa;
+}
+.rav_bar_text {
+  text-align: center;
+  font-size: 11px;
+  position: relative;
+  color: #646464 !important;
+}
+.rav_bar_fill { 
+  position: absolute;
+  background-color: rgb(144, 238, 144);
+}
+.rav_photo {
+  display: block;
+  margin-top: 5px;
+  border: 1px solid #aaa;
+  border-bottom: none
+}
+.rav_photo, .rav_photo img {
+  width: 208px;
+  height: 208px;
+}
+
+.rav_photo_count_, .rav_photo_count_0 {
+  display: none;
+}
+
+</style>
+<script type="text/javascript" src="//dl.dropboxusercontent.com/u/20936055/jsfiles/dug.js"></script><!-- you can customize this template -->
+<script id="dugjs-template" type="text/x-dug-template">
+  {{#projects|dug.limit:1}}
+    <div class="rav_project">
+      <div style="text-align:center !important;"><a class="rav_title" href="{{url}}">{{name}}</a></div>
+      <a class="rav_photo rav_photo_count_{{photoCount}}" href="#"><img src="{{thumbnail.src}}"></a>
+      <div class="rav_bar_wrapper rav_bar">
+        <div class="rav_bar_fill rav_bar" style="width:{{progress}}%;"></div>
+        <div class="rav_bar_text rav_bar">{{progress}}%</div>
+      </div>
+    </div>
+  {{/projects|dug.limit:1}}
+</script>
+<script>
+  dug({
+    cacheExpire: 0,
+    endpoint: "http://api.ravelry.com/projects/YOUR-USERNAME/progress.json?key=YOUR-API-KEY&status=in-progress&notes=false",
+    template: '#dugjs-template'
+  });
+
+</script>
